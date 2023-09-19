@@ -10,7 +10,7 @@ const loginFormHandler = async (event) => {
     // Checks if both 'email' and 'password' have been entered.
     // If both values ('email' and 'password') exist, sends a POST request to '/api/users/login' using fetch() function:
     if (email && password) {
-        const response = await fetch('/api/users/login', {
+        const response = await fetch('/api/users/login', { // Is '/api/users/login' route in the code somewhere?
             method: 'POST',
             // The request includes 'email' and 'password' as JSON data in the request body.
             body: JSON.stringify({ email, password }),
