@@ -1,32 +1,27 @@
-const sequelize = require('../config/connection');
-const { User } = require('../models/User'); // Connect direclty to 'User.js' because 'index.js' commented out.
+const sequlize = require('../config/connection');
+const { User } = require('../models/User'); 
 
-const seedUsers = async () => {
-    await sequelize.sync({ force: true });
-    User.bulkCreate(userData);
+const userData = [
+    {
+        username: "Shades",
+        email: "shadesoakley@gmail.com",
+        password: "darksunglasses"  
+    },
+    {
+        username: "Victoria",
+        email: "twobagsbetter@hotmail.com",
+        password: "highclass21"
+    },
+    {
+        username: "Carp",
+        email: "hammerandnails@yahoo.com",
+        password: "handymantime"
+    }
+]
     
-    const userData = [
-        {
-            username: "Shades",
-            email: "shadesoakley@gmail.com",
-            password: "darksunglasses"  
-        },
-        {
-            username: "Victoria",
-            email: "twobagsbetter@hotmail.com",
-            password: "highclass21"
-        },
-        {
-            username: "Carp",
-            email: "hammerandnails@yahoo.com",
-            password: "handymantime"
-        }
-    ]
-    
-    process.exit(0);
-};
+const seedUsers = () => User.bulkCreate(userData);
 
-seedUsers();
+module.exports = seedUsers();
 
 // module.exports = seedUsers; Comment out until make an 'index.js' file for 'seeds' folder.
 
