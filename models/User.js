@@ -21,16 +21,19 @@ User.init(
     // Attributes define the columns of the 'User' model: id, name, email, and password.
     // Each attribute has specified data type, allowNull property, and validations ('isEmail' and 'len').
     {
+        // Define an 'id' column:
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true
         },
-        name: {
+        // Define a 'username' column:
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        // Define an 'email' column:
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -39,11 +42,12 @@ User.init(
                 isEmail: true,
             },
         },
+        // Define a 'password' column:
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [8],
+                len: [4],
             },
         },
     },
