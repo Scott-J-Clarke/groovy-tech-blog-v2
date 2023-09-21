@@ -1,31 +1,23 @@
-<!-- This code is a login form: -->
-<h2>Login</h2>
-
-<!-- This line starts a form element with the class 'form' and 'login-form.': -->
-<!-- The class can be used for styling or targeting the form with CSS or JavaScript (or Handlebars?): -->
-<form class="form login-form">
+<div class="column">
+<h2 class="title pb-4">Login:</h2><hr>
+<form class="login-form">
     
-    <!-- This code creates a form group for the email input field. -->
-    <!-- It has a label with the text 'email' and an input field type of 'text' with the id 'email-login': -->
-    <div class="form-group">
-        <label for="email-login">email:</label>
-        <input class="form-input" type="text" id="email-login" />    
-    </div>
-
-    <!-- This code creates a form group for the password input field. -->
-    <!-- It has a label with the text 'password' and an input field type of 'password' with the id 'password-login': -->
-    <div class="form-group">
-        <label for="password-login">password:</label>
-        <input class="form-input" type="password" id="password-login" />
+    <div>
+        <label for="email-login">Email:</label>
+        <input type="text" id="email-login" />
     </div>
     
-    <!-- This code creates a form group for the login button. -->
-    <!-- It has a button element with the class 'btn btn-primary' and the text 'login.' -->
-    <!-- When the button is clicked, the form will be submitted. -->
-    <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
+    <div>
+        <label for="password-login">Password:</label>
+        <input type="password" id="password-login" />
     </div>
+
+    <div>
+        <button type="submit" class="button is-primary">Login</button>
+        <a href="/signup"><button type="button" class="button is-danger">Signup</button></a>
+    </div>
+
 </form>
+</div>
 
-<!-- This script file will be executed when the page loads. The script file handles the login functionality. -->
 <script src="/public/js/login.js"></script>

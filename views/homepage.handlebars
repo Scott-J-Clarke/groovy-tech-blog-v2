@@ -1,19 +1,8 @@
-<!-- Copied this format directly from 14-24. -->
-<!-- It renders a list of users in HTML markup, displaying each user's name and email address in a row with two columns -->
-<!-- This Handlebars helper iterates over the 'users' array and assigns each element to the 'user' variable: -->
-{{#each users as |user| }}
-<!-- This is a CSS class for a row with centered alignment and a bottom margin of 5 units: -->
-<div class="row align-center mb-5">
-    <!-- Within the row there are two columns, using the Bootstrap grid system: -->
-    <div class="col-md-6">
-        <!-- The 'h2' heading displays the user's name: -->
-        <h2>{{user.username}}</h2>
-    </div>
-    <div class="col-md-6">
-        <!-- The second column also has a width of 6 columns and has an 'h3' heading with an email link. -->
-        <!-- The user's email address is a clickable link: -->
-        <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-    </div>
+{{#each posts as |post| }}
+
+{{!-- {{> post-info post }} --}}
 </div>
-<!-- '{{/each}}' closes the {{#each}} block and ends the code. -->
+
+{{else}}
+<h6 class="pb-4 has-text-centered is-italic">There are currently no posts.</h6>
 {{/each}}
