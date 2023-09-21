@@ -1,0 +1,18 @@
+const { Post } = require('../models');
+
+const postData = [
+    {
+        title: "New Templating Language",
+        post_content: "There is a new templating language called 'Book.' 'Book' lets the user import that font and formatting from their favorite book when desiging a new application. What do all y'all think about this?",
+        user_id: 1
+    },
+    {
+        title: "'HelpDevs' Gets 500k Subs",
+        post_content: "'HelpDevs' is a popular YouTube channel that has rocketed to popularity in the past 6 months. It is hosted by Matt and Rashida, two experienced developers who had long careers in other fields, prior to working in tech. The pair say that the intention of their channel is to, 'demystify the coding process.' Sounds like they are meeting their goals!",
+        user_id: 3
+    },
+]
+
+const seedPosts = () => Post.bulkCreate(postData);
+
+module.exports = seedPosts;

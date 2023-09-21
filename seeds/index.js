@@ -1,14 +1,14 @@
-const seedUsers = require('./user-seeds');
+// const seedUsers = require('./user-seeds');
 
-const sequelize = require('../config/connection');
+// const sequelize = require('../config/connection');
 
-const seedAll = async () => {
-    await sequelize.sync({ force: true });
+// const seedAll = async () => {
+//     await sequelize.sync({ force: true });
 
-    await seedUsers();
-        console.log('\n----- USERS SEEDED -----\n')
+//     await seedUsers();
+//         console.log('\n----- USERS SEEDED -----\n')
     
-    process.exit(0);
-};
+//     process.exit(0);
+// };
 
-seedAll();
+// seedAll();
