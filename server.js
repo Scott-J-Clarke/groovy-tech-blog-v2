@@ -1,37 +1,41 @@
-const path = require('path');
 const express = require('express');
-const session = require('express-session');
-const exphbs = require('express-handlebars');
 const routes = require('./controllers');
+const sequelize = require('./config/connection');
+const path = require('path');
+
 const helpers = require('./utils/helpers');
 
-const sequelize = require('./config/connection');
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({ helpers });
 
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const session = require('express-session');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers });
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
     secret: 'Super secret secret', // Random string used to sign the cookie ID.
-    cookie: {},
+    cookie: {
+        // Session will automatically end after 10 minutes:
+        expires: 10 * 60 * 1000
+    },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
-        db: sequelize // Is this the correct name for 'db'?
+        db: sequelize
     })
 };
 
 app.use(session(sess));
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(routes);
 

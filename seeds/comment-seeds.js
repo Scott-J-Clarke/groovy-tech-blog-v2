@@ -1,0 +1,23 @@
+const { Comment } = require('../models');
+
+const commentData = [
+    {
+        user_id: 2,
+        post_id: 1,
+        comment_text: "How posh! I can use the style of 'Vanity Fair' for my next app."
+    },
+    {
+        user_id: 3,
+        post_id: 1,
+        comment_text: "There's an issue of 'American Woodworking' that I love. Wonder if 'Book' works with magazines?"
+    },
+    {
+        user_id: 1,
+        post_id: 2,
+        comment_text: "Congratulations to Rashida and Matt! I'll have to check out their YouTube channel!"
+    }
+]
+
+const seedComments = () => Comment.bulkCreate(commentData);
+
+module.exports = seedComments;
