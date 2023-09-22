@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
+const sequelize = require('../config/connection'); // Is this line needed if 'sequelize' is never read?
 const { Post, User, Comment } = require('../models');
 
 // GET info to render homepage ('/') on 'homepage.handlebars':
