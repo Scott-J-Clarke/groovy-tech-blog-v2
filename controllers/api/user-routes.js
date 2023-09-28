@@ -3,7 +3,7 @@ const { User } = require('../../models');
 
 router.post('/login', async (req, res) => {
     try {
-        // Based on username provided at login, looks for user in the User model:
+        // Looks in the User model based on the username given at login:
         const userData = await User.findOne({ where: { username: req.body.username } });
 
         // If at login user is not in the User model:
