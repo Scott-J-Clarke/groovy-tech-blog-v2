@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection'); // Is this line needed if 'sequelize' is never read?
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+// User sees all own posts on dashboard after 'withAuth' checks they are logged in:
 router.get('/', withAuth, async (req, res) => {
     try {
         const dbPostData = await Post.getAll({
             where: {
-                user_id: req.session.user_id
+                user_id: req.session.userId
             },
             attributes: ['id', 'title', 'created_at', 'post_content'],
             include: [
@@ -33,3 +33,5 @@ router.get('/', withAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+module.exports = router;

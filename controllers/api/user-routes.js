@@ -1,13 +1,12 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// Code block that handles the POST request to the '/login' endpoint:
 router.post('/login', async (req, res) => {
     try {
-        // Uses the User model (table) to find a user in the db based on the provided email:
+        // Based on the email provided at login, looks for user in the User model:
         const userData = await User.findOne({ where: { email: req.body.email } });
 
-        // If 'userData' is not found, send a status code (400) and JSON object containing error:
+        // If at login user is not in the User model:
         if (!userData) {
             res
                 .status(400)
@@ -15,17 +14,18 @@ router.post('/login', async (req, res) => {
             return;
         }
 
-        // Checks if the provided password matches the hashed password stored in the db for the user:
-        const validPassword = await userData.checkPassword(req.body.password);
+        // Checks if password entered at login matches user's hashed password stored in the db:
+        const validPassword = userData.checkPassword(req.body.password);
 
-        // If password is not valid, send a status code (400) and JSON object containing error:
+        // Response if password is not valid:
         if (!validPassword) {
             res
                 .status(400)
                 .json({ message: 'Incorrect email or password, please try again.' });
             return;
         }
-        // This line saves the session data, including the user ID and login status, to the server:
+        
+        // Saves session data, including the user ID and login status, to the server:
         req.session.save(() => {
             req.session.userId = userData.id;
             req.session.loggedIn = true;
@@ -37,14 +37,14 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
-
 module.exports = router;
+
+// router.post('/logout', (req, res) => {
+//     if (req.session.logged_in) {
+//         req.session.destroy(() => {
+//             res.status(204).end();
+//         });
+//     } else {
+//         res.status(404).end();
+//     }
+// });
