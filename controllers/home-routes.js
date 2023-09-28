@@ -44,7 +44,7 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-    // If the user is not logged in, the user is sent to the login page:
+    // If user is not logged in, 'login.handlebars' is rendered:
     res.render('login');
 });
 

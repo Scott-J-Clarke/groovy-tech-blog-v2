@@ -2,10 +2,10 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// User sees all own posts on dashboard after 'withAuth' checks they are logged in:
+// 'withAuth' checks user is logged in, then user sees all his own posts:
 router.get('/', withAuth, async (req, res) => {
     try {
-        const dbPostData = await Post.getAll({
+        const dbPostData = await Post.findAll({
             where: {
                 user_id: req.session.userId
             },

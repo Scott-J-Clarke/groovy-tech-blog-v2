@@ -1,4 +1,4 @@
-<div class="mb-5 pt-3">
+<div class="mb-5 pt-3"> {{!-- 'mb' stands for 'margin-bottom' and 'pt' stands for 'padding-top' --}}
     <a href="dashboard/create"><button id="create-post" class="button is-primary is-pulled-right">Create Post</button></a>
 
     <h2 class="title pb-4">Dashboard: Your Posts</h2><hr>
@@ -8,7 +8,9 @@
 {{#each posts as |post|}}
 {{> post-info post}}
 
-<a href="dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">Edit Post</button></a>
+{{!-- Button below is for editing posts: --}}
+{{!-- {{post.id}} is a variable/placeholder that represents the 'id' property of an object called 'post'  --}}
+{{!-- <a href="dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">Edit Post</button></a> --}}
 </div>
 
 {{/each}}
