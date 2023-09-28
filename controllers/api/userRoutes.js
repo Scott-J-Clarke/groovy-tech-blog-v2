@@ -1,5 +1,3 @@
-// Code is writing 'login' and 'logout' routes for user authentication using Express.js framework.
-// Import the router module from Express.js library and 'User' model (table).
 const router = require('express').Router();
 const { User } = require('../../models');
 
@@ -29,10 +27,8 @@ router.post('/login', async (req, res) => {
         }
         // This line saves the session data, including the user ID and login status, to the server:
         req.session.save(() => {
-            // This line assigns the user ID to the 'user_id' property of the session object:
-            req.session.user_id = userData.id;
-            // This line sets the 'logged_in' property of the sessio object to 'true.'
-            req.session.logged_in = true;
+            req.session.userId = userData.id;
+            req.session.loggedIn = true;
 
             res.json({ user: userData, message: 'You are now logged in!' });
         });
@@ -41,16 +37,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Code block that handles the POST request to the '/logout' endpoint.
 router.post('/logout', (req, res) => {
-    // This condition checks if the user is logged in. 
-    // If they are logged in, it destroys the session and sends a response with a status code of '204.'
     if (req.session.logged_in) {
         req.session.destroy(() => {
             res.status(204).end();
         });
     } else {
-        // This sends a status response (404) if the user is NOT logged in.
         res.status(404).end();
     }
 });
