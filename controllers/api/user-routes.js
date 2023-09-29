@@ -3,14 +3,19 @@ const { User } = require('../../models');
 
 router.post('/login', async (req, res) => {
     try {
-        // Looks in the User model based on the username given at login:
+        // Takes 'username' given at login and looks in the User model: 
         const userData = await User.findOne({ where: { username: req.body.username } });
 
         // If at login user is not in the User model:
         if (!userData) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect username or password, please try again.' });
+            res.status(400).json({ message: 'Incorrect username or password.' });
+            return;
+        }
+
+        const validPassword = userData.checkPassword(req.body.password);
+
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect username or password.' });
             return;
         }
 
@@ -19,7 +24,33 @@ router.post('/login', async (req, res) => {
             req.session.userId = userData.id;
             req.session.loggedIn = true;
 
-            res.json({ user: userData, message: 'You are now logged in!' });
+            res.json({ user: userData, message: 'Login successful!' });
+        });
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+router.post('/signup', async (req, res) => {
+    try {
+        // Checks that user put in all 3 required fields:
+        const { username, password, email } = req.body;
+        if (!username || !password || !email) {
+            return res.status(400).json({ message: 'Please provide username, password, and email.' });
+        }
+
+        const existingUser = await User.findOne({ where: { email: req.body.email }});
+        if (existingUser) {
+            return res.status(400).json({ message: 'User with this email already exists.' });
+        }
+
+        const userData = await User.create({ username, password, email });
+
+        req.session.save(() => {
+            req.session.userId = userData.id;
+            req.session.loggedIn = true;
+
+            res.json({ user: userData, message: "Signup successful!" });
         });
     } catch (err) {
         res.status(400).json(err);
@@ -37,16 +68,3 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
-
-// Use this code for the signup?
-
-// // Checks if password entered at login matches user's hashed password stored in the db:
-// const validPassword = userData.checkPassword(req.body.password);
-
-// // Response if password is not valid:
-// if (!validPassword) {
-//     res
-//         .status(400)
-//         .json({ message: 'Incorrect email or password, please try again.' });
-//     return;
-// }

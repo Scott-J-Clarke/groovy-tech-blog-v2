@@ -1,23 +1,43 @@
 <div class="column">
-<h2 class="title pb-4">Login:</h2><hr>
-<form class="login-form">
-    
-    <div>
-        <label for="username-login">Username:</label>
-        <input type="text" id="username-login" />
-    </div>
-    
-    <div>
-        <label for="password-login">Password:</label>
-        <input type="password" id="password-login" />
-    </div>
+    <h2 class="title pb-4">Already a user? Login:</h2><hr>
+    <form class="login-form">
 
-    <div>
-        <button type="submit" class="button is-primary">Login</button>
-        <a href="/signup"><button type="button" class="button is-danger">Signup</button></a>
-    </div>
+        <div>
+            <input type="text" placeholder="Username" id="username-login" />
+        </div>
 
-</form>
+        <div>
+            <input type="password" placeholder="Password" id="password-login" />
+        </div>
+
+        <div>
+            <button type="submit" class="button is-primary">Login</button>
+        </div>
+
+    </form>
+</div>
+
+<div class="column">
+    <h2 class="title pb-4">New user? Sign up!</h2>
+    <form class="signup-form">
+
+        <div>
+            <input type="text" placeholder="Enter Username" id="username-signup" />
+        </div>
+
+        <div>
+            <input type="password" placeholder="Enter Password" id="password-signup" />
+        </div>
+
+        <div>
+            <input type="text" placeholder="Enter Email" id="email-signup" />
+        </div>
+
+        <div>
+            <button type="submit" class="button is-primary">Signup</button>
+        </div>
+
+    </form>
 </div>
 
 <script src="/js/login.js"></script>
