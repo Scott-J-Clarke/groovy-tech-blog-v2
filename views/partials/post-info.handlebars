@@ -1,26 +1,23 @@
-<div class="card mb-6">
+<article class="post mb-6">
+
     <header class="card-header card-header-title has-background-grey-lighter">
-
         <div class="column">
-            <p class="has-text-primary-light"></p>
-            <a href="/post/{{id}}" class="has-text-black is-capitalized is-pulled-left">{{title}} </a></p>
+            <p class="has-text-primary-light">
+            <a href="/post/{{id}}" class="has-text-black is-capitalized is-pulled-left">{{title}} </a>
+            </p>
         </div>
-
-        {{!-- What are these 3 lines of code meant to do? --}}
-        <div class="column">
-            <span class=""> </span>
-        </div>
-
     </header>
 
-        <div class="card-content">
-            <div class="content has-text-justified">
-                {{post_content}}
-            </div>
-            
-            <div class="is-pulled-right">
-                <b>{{user.username}}</b> |
-                | {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>  
-            </div>
+    <div class="is-pulled-right">
+        <p id="post-username-date">
+            Posted by <b>{{user.username}}</b> | {{formatDate created_at}}
+        </p>
+    </div>
+
+    <div class="card-content">
+        <div class="content has-text-justified">
+            {{post_content}}
         </div>
-</div>
+    </div>
+
+</article>
