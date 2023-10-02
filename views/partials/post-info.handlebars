@@ -10,7 +10,7 @@
 
     <div class="is-pulled-right">
         <p id="post-username-date">
-            Posted by <b>{{user.username}}</b> | {{formatDate created_at}}
+            Posted by <b>{{user.username}}</b> | {{formatDate created_at}} | <a href="/post/{{id}}">{{comments.length}} {{formatPlural "comment" comments.length}}</a>
         </p>
     </div>
 
