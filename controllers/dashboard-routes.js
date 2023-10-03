@@ -64,4 +64,45 @@ router.get('/create/', withAuth, async (req, res) => {
     }
 });
 
+router.get('/edit/:id', withAuth, async (req, res) => {
+    try {
+        const dbPostData = await Post.findOne({
+            where: { id: req.params.id },
+            attributes: [
+                'id',
+                'title',
+                'created_at',
+                'post_content'
+            ],
+            include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ['username']
+                    }
+                },
+                {
+                    model: User,
+                    attributes: ['username']
+                }
+            ]
+        });
+
+        if (!dbPostData) {
+            res.status(404).json({ message: 'Can\'t find post with this id.'});
+            return;
+        }
+
+        const post = dbPostData.get({ plain: true });
+        res.render('edit-post', {
+            post,
+            loggedIn: true
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;

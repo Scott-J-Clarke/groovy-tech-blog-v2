@@ -78,4 +78,46 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const dbPostData = await Post.update(
+            {
+                title: req.body.title,
+                post_content: req.body.postContent
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        );
+
+        if (!dbPostData) {
+            res.status(404).json({ message: 'Can\'t find post with this id.' });
+            return;
+        }
+
+        res.json(dbPostData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.delete('/:id', withAuth, async (req, res) => {
+    try {        
+        const dbPostData = await Post.destroy({
+            where: { id: req.params.id }
+        });
+
+        if (!dbPostData) {
+            res.status(404).json({ message: 'Can\'t find post with this id.' });
+            return;
+        }
+
+        res.json(dbPostData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;

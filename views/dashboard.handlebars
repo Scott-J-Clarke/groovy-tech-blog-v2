@@ -9,8 +9,8 @@
 {{> post-info post}}
 
 {{!-- Button below is for editing posts: --}}
-{{!-- {{post.id}} is a variable/placeholder that represents the 'id' property of an object called 'post'  --}}
-{{!-- <a href="dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">Edit Post</button></a> --}}
+{{post.id}} {{!-- {{post.id}} is a variable/placeholder that represents the 'id' property of an object called 'post' --}} 
+<a href="dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">Edit Post</button></a>
 </div>
 
 {{/each}}
