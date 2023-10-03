@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.post('/login', async (req, res) => {
     try {
@@ -64,6 +65,41 @@ router.post('/logout', (req, res) => {
         });
     } else {
         res.status(404).end();
+    }
+});
+
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const updatedUserData = await User.update(req.body, {
+            individualHooks: true,
+            where: { id: req.params.id }
+        });
+
+        if (!updatedUserData) {
+            res.status(404).json({ message: 'Can\'t find user with this id.' });
+            return;
+        }
+
+        res.json(updatedUserData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.delete('/:id', withAuth, async (req, res) => {
+    try {
+        const dbUserData = await User.destroy({
+            where: { id: req.params.id}
+        });
+
+        if (!dbUserData) {
+            res.status(404).json({ message: 'Can\'t find user with this id.' });
+            return;
+        }
+
+        res.json(dbUserData);
+    } catch (err) {
+        res.status(500).json(err);
     }
 });
 
