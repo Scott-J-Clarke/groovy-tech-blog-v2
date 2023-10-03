@@ -96,15 +96,3 @@ router.get('/login', (req, res) => {
 });
 
 module.exports = router;
-
-
-// Comment out for now:
-// router.get('/signup', (req, res) => {
-//     // If the user goes to the '/signup' route but is already logged in, the user is redirected to the homepage:
-//     if (req.session.loggedIn) {
-//         res.redirect('/');
-//         return;
-//     }
-//     // If the user is not logged in, the user is sent to the login page:
-//     res.render('/login');
-// });

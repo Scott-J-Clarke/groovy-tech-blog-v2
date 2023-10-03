@@ -20,7 +20,3 @@ async function deleteFormHandler(event) {
 }
 
 document.querySelector('.delete-post-btn').addEventListener('click', deleteFormHandler);
-
-// body: JSON.stringify({
-//     id: postId
-// }),
