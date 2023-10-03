@@ -1,17 +1,21 @@
 <section>
-    <h2 class="title">Create New Blog Post</h2><hr>
+    <h2 class="title ml-3">Create New Blog Post</h2><hr>
 
     <form class="new-post-form">
 
-        <div>
-            <input type="text" placeholder="Enter the Post Title" id="post-title" />
+        <div class="columns">
+            <div class="column is-three-fifths ml-3">
+                <input class="textarea is-medium" placeholder="Post Title" id="post-title" />
+            </div>
         </div>
 
-        <div>
-            <input class="textarea is-large" placeholder="Type your post content" id="post-content" />
+        <div class="columns">
+            <div class="column is-four-fifths ml-3">
+                <input class="textarea is-medium" placeholder="What do you have to say?" id="post-content" />
+            </div>
         </div>
 
-        <button type="submit" class="button is-primary is-pulled-right">Create Post</button>
+        <button type="submit" class="button is-primary is-pulled-lef ml-3">Create Post</button>
 
     </form>
 
