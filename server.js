@@ -16,11 +16,10 @@ const PORT = process.env.PORT || 3001;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-    secret: 'Super secret secret', // Random string used to sign the cookie ID.
-    cookie: {},
-        // 'cookie' determines when the session will expire.
-        // expires: 10 * 60 * 1000 is 10 mins.
-    
+    secret: 'lh29qrstpv8e4rt', // Random string used to sign the cookie ID.
+    cookie: {
+        expires: 10 * 60 * 1000 // Determines when the session will expire (10 * 60 * 1000 is 10 minutes).
+    }, 
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
