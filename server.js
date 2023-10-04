@@ -18,7 +18,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
     secret: 'lh29qrstpv8e4rt', // Random string used to sign the cookie ID.
     cookie: {
-        //expires: 10 * 60 * 1000 // Determines when the session will expire (10 * 60 * 1000 is 10 minutes).
+        expires: 10 * 60 * 1000 // Determines when the session will expire (10 * 60 * 1000 is 10 minutes).
     }, 
     resave: false,
     saveUninitialized: true,
