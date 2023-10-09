@@ -22,7 +22,7 @@ Through building "Dose of Daily Tech" I:
 
 ## Installation
 
- [See the code on GitHub](https://github.com/Scott-J-Clarke/groovy-tech-blog-v2). 
+ [See the application on Heroku](https://groovy-tech-blog-v2-9abbdd8362ed.herokuapp.com/). 
 
 ---
 
